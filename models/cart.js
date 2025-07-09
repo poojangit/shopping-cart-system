@@ -1,4 +1,4 @@
-import CustomArray from '../dsa/CustomArray.js';
+import CustomArray from '../dsa/customArray.js';
 
 class Cart {
   #items = new CustomArray(); // closure + encapsulation
