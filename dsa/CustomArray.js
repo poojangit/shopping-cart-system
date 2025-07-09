@@ -1,44 +1,65 @@
 class CustomArray {
-    constructor(){
-        this.data = {}
-        this.length = 0
+  constructor() {
+    this.data = {};
+    this.length = 0;
+  }
+  push(item) {
+    this.data[this.length++] = item;
+  }
+  pop() {
+    if (this.length === 0) return undefined; // Nothing to pop
+    const lastIndex = this.length - 1;
+    const item = this.data[lastIndex];
+    delete this.data[lastIndex]; // Clean up
+    this.length--;
+    return item;
+  }
+  clear() {
+    this.data = {};
+    this.length = 0;
+  }
+
+  replaceAll(newArray) {
+    this.clear();
+    for (let i = 0; i < newArray.length; i++) {
+      this.push(newArray[i]);
     }
-    push(item){
-        this.data[this.length++] = item
+  }
+
+  find(callback) {
+    for (let i = 0; i < this.length; i++) {
+      if (callback(this.data[i], i)) return this.data[i];
     }
-    find(callback){
-        for(let i=0; i<this.length; i++){
-            if(callback(this.data[i], i))
-                return this.data[i]
-        }
-        return undefined
+    return undefined;
+  }
+  filter(callback) {
+    const result = new CustomArray();
+    for (let i = 0; i < this.length; i++) {
+      if (callback(this.data[i], i)) result.push(this.data[i]);
     }
-    filter(callback){
-        const result = new CustomArray()
-        for(let i=0; i<this.length; i++){
-            if(callback(this.data[i], i))
-                result.push(this.data[i])
-        }
-        return result
+    return result;
+  }
+  map(callback) {
+    const result = new CustomArray();
+    for (let i = 0; i < this.length; i++) {
+      result.push(callback(this.data[i], i));
     }
-    map(callback){
-        const result = new CustomArray()
-        for(let i=0; i< this.length; i++){
-            result.push(callback(this.data[i], i))
-        }
-        return result
+    return result;
+  }
+  reduce(callback, initialValue) {
+    let acc = initialValue;
+    for (let i = 0; i < this.length; i++) {
+      acc = callback(acc, this.data[i], i);
     }
-    reduce(callback, initialValue){
-        let acc = initialValue
-        for(let i=0; i<this.length;i++){
-            acc = callback(acc, this.data[i], i)
-        }
-        return acc
-    }
-    toArray() {
-        return Array.from({
-            length : this.length
-        }, (_,i) => this.data[i])
-    }
+    return acc;
+  }
+  toArray() {
+    return Array.from(
+      {
+        length: this.length,
+      },
+      (_, i) => this.data[i]
+    );
+  }
 }
-export default CustomArray
+export default CustomArray;

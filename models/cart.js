@@ -19,6 +19,7 @@ class Cart {
 
   removeProduct(productId) {
     this.#items = this.#items.filter(item => item.product.id !== productId);
+    this.#items.replaceAll(filtered.toArray());
   }
 
   listItems() {
