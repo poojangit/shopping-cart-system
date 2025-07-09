@@ -6,25 +6,24 @@ class CustomArray {
   push(item) {
     this.data[this.length++] = item;
   }
-  pop() {
-    if (this.length === 0) return undefined; // Nothing to pop
-    const lastIndex = this.length - 1;
-    const item = this.data[lastIndex];
-    delete this.data[lastIndex]; // Clean up
-    this.length--;
-    return item;
-  }
+  
   clear() {
     this.data = {};
     this.length = 0;
   }
 
   replaceAll(newArray) {
-    this.clear();
-    for (let i = 0; i < newArray.length; i++) {
-      this.push(newArray[i]);
-    }
+  this.clear();
+  for (let i = 0; i < newArray.length; i++) {
+    this.push(newArray[i]);
   }
+}
+
+clear() {
+  this.data = {};
+  this.length = 0;
+}
+
 
   find(callback) {
     for (let i = 0; i < this.length; i++) {

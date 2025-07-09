@@ -17,11 +17,13 @@ class Cart {
     if (item) item.quantity = quantity;
   }
 
-  removeProduct(productId) {
-    this.#items = this.#items.filter(item => item.product.id !== productId);
-    this.#items.replaceAll(filtered.toArray());
+removeProduct(productId) {
+  const filtered = this.#items.filter(item => item.product.id !== productId);
+  this.#items.clear(); // remove all existing items
+  for (let i = 0; i < filtered.length; i++) {
+    this.#items.push(filtered.data[i]);
   }
-
+}
   listItems() {
     return this.#items.map(item => ({
       name: item.product.name,

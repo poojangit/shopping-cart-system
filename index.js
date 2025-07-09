@@ -1,7 +1,7 @@
 import Cart from './models/cart.js';
 import Product from './models/product.js';
 import showUserCart from './utils/user-utils.js';
-import { askQuestion, closePrompt } from './utils/prompt.js'; // also fixed typo: promt.js → prompt.js
+import { askQuestion, closePrompt } from './utils/promt.js'; // also fixed typo: promt.js → prompt.js
 
 const cart = new Cart();
 let productIdCounter = 1;
